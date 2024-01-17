@@ -85,9 +85,15 @@ void Template::displays() {
 		window.draw(cube[i]);
 	}
 
+	for (int i = 0; i < nextPieceTotal; i++) {
+		window.draw(borderNext[i]);
+	}
+
 	for (int i = 0; i < nextPieceTotal * 4; i++) {
 		window.draw(cubeNext[i]);
 	}
+
+	window.draw(scoreTextString);
 
 	window.draw(scoreText);
 
@@ -100,7 +106,7 @@ void Template::displays() {
 
 
 void Template::objects() {
-	
+
 	//BORDER
 	Color borderColor;
 
@@ -132,16 +138,32 @@ void Template::objects() {
 		}
 	}
 
+	//BORDER AROUND CUBE NEXT
+	for (int i = 0; i < nextPieceTotal; i++) {
+		borderNext[i].setSize(Vector2f(cubeSize * 3, cubeSize * 4));
+		borderNext[i].setFillColor(Color::Black);
+		borderNext[i].setOutlineThickness(cubeSize * 0.025);
+		borderNext[i].setOutlineColor(Color::Cyan);
+		borderNext[i].setPosition(Vector2f(cubeSize * (cubeMaxX + 3), cubeSize * (cubeMaxY - 13 + i * 5)));
+	}
+
+
 	//SCORE TEXT
 	if (!font.loadFromFile("resources\\fonts\\font-style.ttf")) {
 		cout << "\n\t Font not found\n";
 		return;
 	}
 
+	scoreTextString.setFont(font);
+	scoreTextString.setPosition(Vector2f((cubeMaxX + 2.5) * cubeSize, cubeSize * 2));
+	scoreTextString.setFillColor(Color::White);
+	scoreTextString.setString("Score:");
+
 	scoreText.setFont(font);
-	scoreText.setPosition(Vector2f((cubeMaxX + 4) * cubeSize, cubeSize * 2));
+	scoreText.setPosition(Vector2f((cubeMaxX + 5) * cubeSize, cubeSize * 2));
 	scoreText.setFillColor(Color::White);
 	scoreText.setString(to_string(score));
+
 
 	//GAME OVER TEXT
 	gameOverText.setFont(font);
@@ -332,7 +354,7 @@ bool Template::checkCollision(float addX, float addY) {
 	for (int i = start; i < end; i++) {
 
 		if (cubePos[i].x + addX == 0 || cubePos[i].x + addX == cubeSize * (cubeMaxX + 1)) return true;
-		
+
 		if (cubePos[i].y + addY == cubeSize * (cubeMaxY + 1)) return true;
 
 		for (int j = 0; j < start; j++) {

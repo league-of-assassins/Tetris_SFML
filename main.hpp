@@ -19,12 +19,14 @@ private:
 	float height = cubeSize * (cubeMaxY + 2);
 
 	RenderWindow window;
-	
+
 	int frame = 1;
 
 	Event event;
 
 	Font font;
+
+	Text scoreTextString;
 
 	Text scoreText;
 	int score = 0;
@@ -104,10 +106,12 @@ private:
 	Vector2f add;
 
 	int nextPieceTotal = 3;
-	vector<int> nextPiece = {2, 3, 6};
+	vector<int> nextPiece = { 2, 3, 6 };
 
 	RectangleShape cubeNext[12];
 	Vector2f cubeNextPos[12];
+
+	RectangleShape borderNext[3];
 
 
 	int pieceType;
@@ -119,7 +123,7 @@ private:
 	bool rotate = false, spawnNew = true, setPos = false;
 
 	bool gameOver = false;
-	
+
 public:
 
 	void setWindow();
@@ -133,7 +137,7 @@ public:
 	Template();
 
 	void objects();
-	
+
 
 
 	void spawnPiece();
@@ -161,4 +165,3 @@ public:
 
 
 };
-
