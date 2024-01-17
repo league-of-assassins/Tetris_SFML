@@ -1,3 +1,3 @@
 # Tetris_SFML
  
-<img src="/res/tetris_preview.png" width="333" height="439">
+<img src="/res/tetris_preview.gif" width="400" height="516">
