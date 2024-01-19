@@ -1,19 +1,19 @@
 #include "main.hpp"
 
 
-void Template::setWindow() {
-	window.create(VideoMode(width, height), "Template", Style::None);
+void Tetris::setWindow() {
+	window.create(VideoMode(width, height), "Tetris", Style::None);
 	window.setFramerateLimit(60);
 }
 
-void Template::frames() {
+void Tetris::frames() {
 
 	frame++;
 
 	if (frame == 100000) frame = 0;
 }
 
-Template::Template() {
+Tetris::Tetris() {
 
 	setWindow();
 	objects();
@@ -32,7 +32,7 @@ Template::Template() {
 }
 
 
-void Template::events() {
+void Tetris::events() {
 	while (window.pollEvent(event))
 	{
 		if (event.type == Event::Closed) window.close();
@@ -68,7 +68,7 @@ void Template::events() {
 	}
 }
 
-void Template::displays() {
+void Tetris::displays() {
 
 	window.clear(Color::Black);
 
@@ -105,7 +105,7 @@ void Template::displays() {
 }
 
 
-void Template::objects() {
+void Tetris::objects() {
 
 	//BORDER
 	Color borderColor;
@@ -183,7 +183,7 @@ void Template::objects() {
 
 
 
-void Template::spawnPiece() {
+void Tetris::spawnPiece() {
 
 	int temp;
 	bool findNewPieceType = true;
@@ -241,7 +241,7 @@ void Template::spawnPiece() {
 	setPos = true;
 }
 
-void Template::changePiecePos() {
+void Tetris::changePiecePos() {
 	int j = 0;
 	for (int i = start; i < end; i++) {
 
@@ -252,7 +252,7 @@ void Template::changePiecePos() {
 	}
 }
 
-void Template::setPiecePos() {
+void Tetris::setPiecePos() {
 	setPos = false;
 
 	for (int i = start; i < end; i++) {
@@ -262,7 +262,7 @@ void Template::setPiecePos() {
 	setPreviewPos();
 }
 
-void Template::setPreviewPos() {
+void Tetris::setPreviewPos() {
 
 	int n = 1;
 
@@ -279,7 +279,7 @@ void Template::setPreviewPos() {
 	}
 }
 
-void Template::setNextPiecePos() {
+void Tetris::setNextPiecePos() {
 
 	Vector2f temp;
 
@@ -296,7 +296,7 @@ void Template::setNextPiecePos() {
 	}
 }
 
-void Template::rotatePiece() {
+void Tetris::rotatePiece() {
 	rotate = false;
 
 	rotation++;
@@ -313,7 +313,7 @@ void Template::rotatePiece() {
 	setPos = true;
 }
 
-void Template::updatePieceSides() {
+void Tetris::updatePieceSides() {
 
 	if (checkCollision(add.x, 0)) add.x = 0;
 
@@ -329,7 +329,7 @@ void Template::updatePieceSides() {
 	setPos = true;
 }
 
-void Template::updatePieceDown() {
+void Tetris::updatePieceDown() {
 
 	if (checkCollision(0, add.y)) {
 		spawnNew = true;
@@ -349,7 +349,7 @@ void Template::updatePieceDown() {
 }
 
 
-bool Template::checkCollision(float addX, float addY) {
+bool Tetris::checkCollision(float addX, float addY) {
 
 	for (int i = start; i < end; i++) {
 
@@ -366,7 +366,7 @@ bool Template::checkCollision(float addX, float addY) {
 }
 
 
-void Template::checkRows() {
+void Tetris::checkRows() {
 
 	int pieceRowCount[cubeMaxY] = {};
 	int pieceRowPos[cubeMaxY][cubeMaxX] = {};
@@ -444,7 +444,7 @@ void Template::checkRows() {
 }
 
 
-void Template::logic() {
+void Tetris::logic() {
 
 	if (spawnNew) {
 		spawnNew = false;
@@ -478,7 +478,7 @@ void Template::logic() {
 int main()
 {
 
-	Template obj;
+	Tetris obj;
 
 	return 0;
 }

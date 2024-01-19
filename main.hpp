@@ -10,7 +10,7 @@ const int cubeMaxX = 10;
 const int cubeMaxY = 20;
 
 
-class Template {
+class Tetris {
 private:
 
 	const int cubeSize = 40;
@@ -134,7 +134,7 @@ public:
 
 	void displays();
 
-	Template();
+	Tetris();
 
 	void objects();
 
